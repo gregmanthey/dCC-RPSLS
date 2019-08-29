@@ -17,17 +17,18 @@ namespace RPSLS
     }
 
     //member methods
-    public override void ChooseGesture(List<string> gestures)
+    public override void ChooseGesture(List<string> gestureList)
     {
-      Console.WriteLine("Please enter your choice (Rock, Paper, Scissors, Lizard, Spock):");
+      Console.WriteLine("What's your weapon of choice?");
       string userInput = Console.ReadLine().Trim().ToLower();
-      if (gestures.Contains(userInput))
+      if (gestureList.Contains(userInput))
       {
         gesture = userInput;
+        Console.Clear();
         return;
       }
       Console.WriteLine("Sorry, that was not a valid input. Please enter one of the options listed.");
-      ChooseGesture();
+      ChooseGesture(gestureList);
     }
 
     public override void SetName()

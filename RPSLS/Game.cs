@@ -13,7 +13,6 @@ namespace RPSLS
     public Player playerTwo;
     public List<string> gestures = new List<string> { "rock", "paper", "scissors", "lizard", "spock" };
 
-
     //constructor
     public Game()
     {
@@ -32,9 +31,10 @@ namespace RPSLS
         GetGestures();
         DisplayGestureChoices();
         CompareGestures();
-        DisplayRoundWinner();
+        DisplayScore();
       }
-      DisplayGrandWinner();
+      DetermineGrandWinner();
+      DisplayScore();
       return AskToPlayAgain();
     }
     public int HowManyPlayers()
@@ -93,11 +93,21 @@ namespace RPSLS
 
     public void DisplayRules()
     {
-      Console.WriteLine("Rules of Rock, Paper, Scissors, Lizard, Spock:");
+      string gestureString = "";
+      for (int i = 0; i < gestures.Count; i++)
+      {
+        gestureString += gestures[i][0].ToString().ToUpper();
+        gestureString += gestures[i].Substring(1, gestures[i].Length - 1);
+        if (i < gestures.Count - 1)
+        {
+          gestureString += ", ";
+        }
+      }
+      Console.WriteLine($"Rules of {gestureString}:");
       Console.WriteLine("This is a variation of the classic game of Rock, Paper, Scissors.");
       Console.WriteLine("There are two players (in this game, you can play human vs human, human vs computer, or computer vs computer).");
       Console.WriteLine("Each one chooses from the list of options and a winner is determined by these rules:");
-      Console.WriteLine($"The options are: {gestures}.");
+      Console.WriteLine($"The options are: {gestureString}.");
       Console.WriteLine("Rock crushes Scissors.");
       Console.WriteLine("Scissors cut Paper.");
       Console.WriteLine("Paper covers Rock.");
@@ -143,7 +153,7 @@ namespace RPSLS
       string g2 = playerTwo.gesture;
       if (g1 == g2)
       {
-        Console.WriteLine("It is a tie! Let's try again.");
+        Console.WriteLine("It is a tie! Lettuce try again.");
       }
       else if ((g1 == "rock"     && (g2 == "scissors" || g2 == "lizard")) ||
                (g1 == "paper"    && (g2 == "rock"     || g2 == "spock" )) ||
@@ -153,20 +163,41 @@ namespace RPSLS
       {
         //player 1 wins
         playerOne.score++;
+        DisplayRoundWinner(playerOne.name);
       }
       else
       {
         //player 2 wins
         playerTwo.score++;
+        DisplayRoundWinner(playerTwo.name);
       }
     }
-    public void DisplayRoundWinner()
+    public void DisplayRoundWinner(string winner)
     {
-      //Console.WriteLine($"{winner} is the winner!");
+      Console.WriteLine($"{winner} is the winner of this round vegetable.");
     }
-    public void DisplayGrandWinner()
+
+    public void DisplayScore()
     {
-      //display overall winner
+      Console.WriteLine("Score:");
+      Console.WriteLine($"{playerOne.name}: {playerOne.score}");
+      Console.WriteLine($"{playerTwo.name}: {playerTwo.score}");
+    }
+
+    public void DetermineGrandWinner()
+    {
+      if (playerOne.score > playerTwo.score)
+      {
+        DisplayGrandWinner(playerOne.name);
+      }
+      else
+      {
+        DisplayGrandWinner(playerTwo.name);
+      }
+    }
+    public void DisplayGrandWinner(string winner)
+    {
+      Console.WriteLine($"{winner} has taken all of the marbles!");
     }
     public bool AskToPlayAgain()
     {
