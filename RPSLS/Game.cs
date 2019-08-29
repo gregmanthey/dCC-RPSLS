@@ -23,7 +23,7 @@ namespace RPSLS
     {
       int numberOfHumanPlayers = HowManyPlayers();
       CreatePlayers(numberOfHumanPlayers);
-      ShowRules();
+      AskToDisplayRules();
       int numberOfGamesToWin = (HowManyGames() + 1) / 2;
       while(playerOne.score < numberOfGamesToWin && playerTwo.score < numberOfGamesToWin)
       {
@@ -69,13 +69,45 @@ namespace RPSLS
         playerTwo = new AI();
       }
     }
-    public void ShowRules()
+    public void AskToDisplayRules()
     {
       Console.WriteLine("Would you like to see the rules?");
-      if(Console.ReadLine() == "y")
+      switch (Console.ReadLine())
       {
-        //display rules
+        case "yes":
+        case "y":
+          DisplayRules();
+          break;
+        case "no":
+        case "n":
+          Console.WriteLine("Sounds like you already know the ropes. Have fun!");
+          return;
+        default:
+          Console.WriteLine("Please enter Yes, Y, No, or N.");
+          AskToDisplayRules();
+          break;
       }
+    }
+
+    public void DisplayRules()
+    {
+      Console.WriteLine("Rules of Rock, Paper, Scissors, Lizard, Spock:");
+      Console.WriteLine("This is a variation of the classic game of Rock, Paper, Scissors.");
+      Console.WriteLine("There are two players (in this game, you can play human vs human, human vs computer, or computer vs computer).");
+      Console.WriteLine("Each one chooses from the list of options (Rock, Paper, Scissors, Lizard, Spock) and a winner is determined by these rules:");
+      Console.WriteLine("Rock crushes Scissors.");
+      Console.WriteLine("Scissors cut Paper.");
+      Console.WriteLine("Paper covers Rock.");
+      Console.WriteLine("Rock crushes Lizard.");
+      Console.WriteLine("Lizard poisons spock.");
+      Console.WriteLine("Spock smashes Scissors.");
+      Console.WriteLine("Scissors decapitate Lizard.");
+      Console.WriteLine("Lizard eats Paper.");
+      Console.WriteLine("Paper disproves Spock.");
+      Console.WriteLine("Spock vaporizes Rock.");
+      Console.WriteLine("If the same value is chosen, it is a tie and must be replayed.");
+      Console.WriteLine("Press enter to proceed to play the game:");
+      Console.ReadLine();
     }
 
     public int HowManyGames()
@@ -100,7 +132,7 @@ namespace RPSLS
     }
     public void DisplayGestureChoices()
     {
-      Console.WriteLine($"Player one chose {playerOne.gesture} and player two chose {playerTwo.gesture}");
+      Console.WriteLine($"Player one chose {playerOne.gesture} and player two chose {playerTwo.gesture}.");
     }
     public void CompareGestures()
     {

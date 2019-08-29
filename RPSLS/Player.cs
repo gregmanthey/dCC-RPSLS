@@ -12,7 +12,7 @@ namespace RPSLS
     public string name;
     public int score;
     public string gesture;
-    public List<string> gestures = new List<string>{ "rock", "paper", "scissors", "lizard", "spock"};
+    public List<string> gestures = new List<string>{ "rock", "paper", "scissors", "lizard", "spock" };
 
     //constructor
     public Player()
