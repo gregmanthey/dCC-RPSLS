@@ -12,7 +12,6 @@ namespace RPSLS
     public string name;
     public int score;
     public string gesture;
-    public List<string> gestures = new List<string>{ "rock", "paper", "scissors", "lizard", "spock" };
 
     //constructor
     public Player()
@@ -23,7 +22,7 @@ namespace RPSLS
     }
 
     //member methods
-    public abstract void ChooseGesture();
+    public abstract void ChooseGesture(List<string> gestures);
 
     public abstract void SetName();
 

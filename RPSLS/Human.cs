@@ -17,7 +17,7 @@ namespace RPSLS
     }
 
     //member methods
-    public override void ChooseGesture()
+    public override void ChooseGesture(List<string> gestures)
     {
       Console.WriteLine("Please enter your choice (Rock, Paper, Scissors, Lizard, Spock):");
       string userInput = Console.ReadLine().Trim().ToLower();
@@ -37,6 +37,7 @@ namespace RPSLS
       switch (userInput)
       {
         case null:
+        case "":
           Console.WriteLine("Please enter a non-blank value for the name.");
           SetName();
           break;

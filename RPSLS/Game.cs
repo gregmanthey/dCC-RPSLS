@@ -11,6 +11,8 @@ namespace RPSLS
     //member variables
     public Player playerOne;
     public Player playerTwo;
+    public List<string> gestures = new List<string> { "rock", "paper", "scissors", "lizard", "spock" };
+
 
     //constructor
     public Game()
@@ -94,7 +96,8 @@ namespace RPSLS
       Console.WriteLine("Rules of Rock, Paper, Scissors, Lizard, Spock:");
       Console.WriteLine("This is a variation of the classic game of Rock, Paper, Scissors.");
       Console.WriteLine("There are two players (in this game, you can play human vs human, human vs computer, or computer vs computer).");
-      Console.WriteLine("Each one chooses from the list of options (Rock, Paper, Scissors, Lizard, Spock) and a winner is determined by these rules:");
+      Console.WriteLine("Each one chooses from the list of options and a winner is determined by these rules:");
+      Console.WriteLine($"The options are: {gestures}.");
       Console.WriteLine("Rock crushes Scissors.");
       Console.WriteLine("Scissors cut Paper.");
       Console.WriteLine("Paper covers Rock.");
@@ -125,18 +128,37 @@ namespace RPSLS
     }
     public void GetGestures()
     {
-      int randomNumber = new Random().Next(1, 6);
-      Console.WriteLine($"Random number is {randomNumber}");
-      Console.ReadLine();
+      playerOne.ChooseGesture(gestures);
+      playerTwo.ChooseGesture(gestures);
 
     }
     public void DisplayGestureChoices()
     {
-      Console.WriteLine($"Player one chose {playerOne.gesture} and player two chose {playerTwo.gesture}.");
+      Console.WriteLine($"{playerOne.name} chose {playerOne.gesture} and {playerTwo.name} chose {playerTwo.gesture}.");
     }
     public void CompareGestures()
     {
       //compare p1.gesture to p2.gesture and find winner
+      string g1 = playerOne.gesture;
+      string g2 = playerTwo.gesture;
+      if (g1 == g2)
+      {
+        Console.WriteLine("It is a tie! Let's try again.");
+      }
+      else if ((g1 == "rock"     && (g2 == "scissors" || g2 == "lizard")) ||
+               (g1 == "paper"    && (g2 == "rock"     || g2 == "spock" )) ||
+               (g1 == "scissors" && (g2 == "paper"    || g2 == "lizard")) ||
+               (g1 == "lizard"   && (g2 == "spock"    || g2 == "paper" )) ||
+               (g1 == "spock"    && (g2 == "scissors" || g2 == "rock"  )))
+      {
+        //player 1 wins
+        playerOne.score++;
+      }
+      else
+      {
+        //player 2 wins
+        playerTwo.score++;
+      }
     }
     public void DisplayRoundWinner()
     {

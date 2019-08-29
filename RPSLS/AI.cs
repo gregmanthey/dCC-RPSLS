@@ -17,15 +17,16 @@ namespace RPSLS
     }
 
     //member methods
-    public override void ChooseGesture()
+    public override void ChooseGesture(List<string> gestures)
     {
       
     }
     public override void SetName()
     {
-      List<string> AINames = new List<string> { "Bob", "Sam", "Uma", "Terry", "Max", "Stan", "Judith", "Judas", "Cameron", "Liliana", "Frodo", "Randy" };
+      List<string> AINames = new List<string> { "Bob", "Sam", "Uma", "Terry", "Max", "Stan", "Judith", "Judas", "Cameron", "Liliana", "Frodo", "Randy", "Beelzeboss", "Tony", "Steve", "Boof" };
       int randomIndex = new Random().Next(0, AINames.Count);
       name = AINames[randomIndex];
+      Console.WriteLine("AI's name is: " + name);
     }
   }
 }
