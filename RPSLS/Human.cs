@@ -9,7 +9,6 @@ namespace RPSLS
   class Human : Player
   {
     //member variables (has a)
-    public string name;
 
     //constructor
     public Human():base()
@@ -24,10 +23,6 @@ namespace RPSLS
       this.gesture = Console.ReadLine();
     }
 
-    public void SetName()
-    {
-      Console.WriteLine("Please enter the player's name:");
-      name = Console.ReadLine();
-    }
+
   }
 }

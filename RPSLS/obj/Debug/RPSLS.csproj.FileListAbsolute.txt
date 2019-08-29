@@ -1,0 +1,7 @@
+E:\OneDrive\Desktop\devCodeCamp\Week_03\Projects\RPSLS\RPSLS\bin\Debug\RPSLS.exe.config
+E:\OneDrive\Desktop\devCodeCamp\Week_03\Projects\RPSLS\RPSLS\bin\Debug\RPSLS.exe
+E:\OneDrive\Desktop\devCodeCamp\Week_03\Projects\RPSLS\RPSLS\bin\Debug\RPSLS.pdb
+E:\OneDrive\Desktop\devCodeCamp\Week_03\Projects\RPSLS\RPSLS\obj\Debug\RPSLS.csprojAssemblyReference.cache
+E:\OneDrive\Desktop\devCodeCamp\Week_03\Projects\RPSLS\RPSLS\obj\Debug\RPSLS.csproj.CoreCompileInputs.cache
+E:\OneDrive\Desktop\devCodeCamp\Week_03\Projects\RPSLS\RPSLS\obj\Debug\RPSLS.exe
+E:\OneDrive\Desktop\devCodeCamp\Week_03\Projects\RPSLS\RPSLS\obj\Debug\RPSLS.pdb

@@ -9,6 +9,7 @@ namespace RPSLS
   class Player
   {
     //member variables (has a)
+    public string name;
     public int score;
     public string gesture;
 
@@ -23,6 +24,11 @@ namespace RPSLS
     public virtual void ChooseGesture(string gesture = "")
     {
       this.gesture = gesture;
+    }
+    public virtual void SetName()
+    {
+      Console.WriteLine("Please enter the player's name:");
+      name = Console.ReadLine();
     }
   }
 }
