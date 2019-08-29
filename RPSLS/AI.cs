@@ -13,10 +13,7 @@ namespace RPSLS
     //constructor
     public AI():base()
     {
-      List<string> AINames = new List<string> { "Bob", "Sam", "Uma", "Terry", "Max", "Stan", "Judith", "Judas", "Cameron", "Liliana", "Frodo", "Randy" };
-      Random randy = new Random();
-      int randomIndex = randy.Next(0, AINames.Count);
-      name = AINames[randomIndex];
+
     }
 
     //member methods
@@ -26,7 +23,9 @@ namespace RPSLS
     }
     public override void SetName()
     {
-      
+      List<string> AINames = new List<string> { "Bob", "Sam", "Uma", "Terry", "Max", "Stan", "Judith", "Judas", "Cameron", "Liliana", "Frodo", "Randy" };
+      int randomIndex = new Random().Next(0, AINames.Count);
+      name = AINames[randomIndex];
     }
   }
 }

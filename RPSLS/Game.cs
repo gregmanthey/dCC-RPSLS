@@ -20,7 +20,7 @@ namespace RPSLS
 
     //methods
     //run game
-    public void RunGame()
+    public bool RunGame()
     {
       int numberOfHumanPlayers = HowManyPlayers();
       CreatePlayers(numberOfHumanPlayers);
@@ -34,7 +34,7 @@ namespace RPSLS
         DisplayRoundWinner();
       }
       DisplayGrandWinner();
-      AskToPlayAgain();
+      return AskToPlayAgain();
     }
     //set up players-- PvP or PvE
     public int HowManyPlayers()
@@ -114,14 +114,23 @@ namespace RPSLS
     {
       //display overall winner
     }
-    public void AskToPlayAgain()
+    public bool AskToPlayAgain()
     {
       Console.WriteLine("Would you like to play again?");
-      string toPlayAgain = Console.ReadLine();
-      if(toPlayAgain == "yes")
+      string toPlayAgain = Console.ReadLine().Trim().ToLower();
+      switch (toPlayAgain)
       {
-        RunGame();
+        case "yes":
+        case "y":
+          return true;
+        case "no":
+        case "n":
+          return false;
+        default:
+          Console.WriteLine($"You entered {toPlayAgain}. Please enter Yes, Y, No or N.");
+          return AskToPlayAgain();
       }
+
     }
   }
 }

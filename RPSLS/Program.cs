@@ -10,8 +10,14 @@ namespace RPSLS
   {
     static void Main(string[] args)
     {
-      Game RPSLS = new Game();
-      RPSLS.RunGame();
+      bool keepPlaying;
+      do
+      {
+        Game RPSLS = new Game();
+        keepPlaying = RPSLS.RunGame();
+      } while (keepPlaying);
+
+      System.Environment.Exit(0);
     }
   }
 }

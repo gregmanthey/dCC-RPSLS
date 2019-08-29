@@ -13,7 +13,7 @@ namespace RPSLS
     //constructor
     public Human():base()
     {
-      SetName();
+
     }
 
     //member methods
@@ -33,7 +33,17 @@ namespace RPSLS
     public override void SetName()
     {
       Console.WriteLine("Please enter the player's name:");
-      name = Console.ReadLine();
+      string userInput = Console.ReadLine().Trim();
+      switch (userInput)
+      {
+        case null:
+          Console.WriteLine("Please enter a non-blank value for the name.");
+          SetName();
+          break;
+        default:
+          name = userInput;
+          break;
+      }
     }
   }
 }

@@ -17,6 +17,7 @@ namespace RPSLS
     //constructor
     public Player()
     {
+      SetName();
       score = 0;
       gesture = "";
     }
