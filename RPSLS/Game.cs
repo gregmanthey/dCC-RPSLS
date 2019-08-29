@@ -9,10 +9,8 @@ namespace RPSLS
   class Game
   {
     //member variables
-    public int numberOfHumanPlayers;
     public Player playerOne;
     public Player playerTwo;
-    public int numberOfGamesToPlay;
 
     //constructor
     public Game()
@@ -24,33 +22,52 @@ namespace RPSLS
     //run game
     public void RunGame()
     {
-      HowManyPlayers();
-      CreatePlayers();
+      int numberOfHumanPlayers = HowManyPlayers();
+      CreatePlayers(numberOfHumanPlayers);
       ShowRules();
-      HowManyGames();
-
-      GetGestures();
-      DisplayGestureChoices();
-      CompareGestures();
-      DisplayWinner();
-
+      int numberOfGamesToWin = (HowManyGames() + 1) / 2;
+      while(playerOne.score < numberOfGamesToWin / 2 && playerTwo.score < numberOfGamesToWin)
+      {
+        GetGestures();
+        DisplayGestureChoices();
+        CompareGestures();
+        DisplayRoundWinner();
+      }
+      DisplayGrandWinner();
+      AskToPlayAgain();
     }
     //set up players-- PvP or PvE
-    public void HowManyPlayers()
+    public int HowManyPlayers()
     {
-      Console.WriteLine("How many players? Please press 1 or 2.");
-      numberOfHumanPlayers = int.Parse(Console.ReadLine());
-      Console.WriteLine($"Sounds great! We will get started with {numberOfHumanPlayers} player(s).");
-    }
-    public void CreatePlayers()
-    {
-      playerOne = new Human();
-      if (numberOfHumanPlayers == 2)
+      Console.WriteLine("How many players? Please enter 0, 1, or 2.");
+      int numberOfHumanPlayers = int.Parse(Console.ReadLine());
+      switch (numberOfHumanPlayers)
       {
+        case 0:
+        case 1:
+        case 2:
+          Console.WriteLine($"Sounds great! We will get started with {numberOfHumanPlayers} player(s).");
+          return numberOfHumanPlayers;
+        default:
+          Console.WriteLine($"You entered {numberOfHumanPlayers}, which is not valid.");
+          return HowManyPlayers();
+      }
+    }
+    public void CreatePlayers(int numberOfHumanPlayers)
+    {
+      if (numberOfHumanPlayers == 1)
+      {
+        playerOne = new Human();
+        playerTwo = new AI();
+      }
+      else if (numberOfHumanPlayers == 2)
+      {
+        playerOne = new Human();
         playerTwo = new Human();
       }
       else
       {
+        playerOne = new AI();
         playerTwo = new AI();
       }
     }
@@ -65,17 +82,18 @@ namespace RPSLS
     }
 
     //ask how many games to play-- best of 3, 5, 7, etc. up to a certain maximum amount
-    public void HowManyGames()
+    public int HowManyGames()
     {
       Console.WriteLine("How many games would you like to play? (must be an odd number 3 or higher)");
-      numberOfGamesToPlay = int.Parse(Console.ReadLine());
-      Console.WriteLine($"Best of {numberOfGamesToPlay} it is!");
+      return int.Parse(Console.ReadLine());
     }
     //get gestures from both players
     public void GetGestures()
     {
-      int randomNumber = new Random().Next(1, 7);
+      int randomNumber = new Random().Next(1, 6);
       Console.WriteLine($"Random number is {randomNumber}");
+      Console.ReadLine();
+
     }
     //display gesture choices
     public void DisplayGestureChoices()
@@ -88,9 +106,22 @@ namespace RPSLS
       //compare p1.gesture to p2.gesture and find winner
     }
     //display results
-    public void DisplayWinner()
+    public void DisplayRoundWinner()
     {
       //Console.WriteLine($"{winner} is the winner!");
+    }
+    public void DisplayGrandWinner()
+    {
+      //display overall winner
+    }
+    public void AskToPlayAgain()
+    {
+      Console.WriteLine("Would you like to play again?");
+      string toPlayAgain = Console.ReadLine();
+      if(toPlayAgain == "yes")
+      {
+        RunGame();
+      }
     }
   }
 }
