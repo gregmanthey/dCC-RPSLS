@@ -11,9 +11,9 @@ namespace RPSLS
     //member variables (has a)
 
     //constructor
-    public Human():base()
+    public Human()
     {
-
+      SetName();
     }
 
     //member methods

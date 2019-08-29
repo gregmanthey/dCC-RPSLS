@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace RPSLS
 {
@@ -12,6 +12,7 @@ namespace RPSLS
     public Player playerOne;
     public Player playerTwo;
     public List<string> gestures = new List<string> { "rock", "paper", "scissors", "lizard", "spock" };
+
 
     //constructor
     public Game()
@@ -68,6 +69,7 @@ namespace RPSLS
       else
       {
         playerOne = new AI();
+        Thread.Sleep(100);
         playerTwo = new AI();
       }
     }
@@ -125,9 +127,9 @@ namespace RPSLS
 
     public int HowManyGames()
     {
-      Console.WriteLine("How many games would you like to play? (best of 3 or higher, must be odd number)");
+      Console.WriteLine("How many games would you like to play? (best of 3 or higher, must be odd number less than 1,000)");
       int gamesBestOutOf = int.Parse(Console.ReadLine().Trim());
-      if (gamesBestOutOf % 2 == 0 || gamesBestOutOf < 3)
+      if (gamesBestOutOf % 2 == 0 || gamesBestOutOf < 3 || gamesBestOutOf > 999)
       {
         return HowManyGames();
       }

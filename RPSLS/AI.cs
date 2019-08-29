@@ -10,8 +10,9 @@ namespace RPSLS
   {
     //member variables (has a)
     Random randy = new Random();
+
     //constructor
-    public AI():base()
+    public AI()
     {
 
     }
