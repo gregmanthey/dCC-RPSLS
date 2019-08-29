@@ -19,14 +19,13 @@ namespace RPSLS
     }
 
     //methods
-    //run game
     public bool RunGame()
     {
       int numberOfHumanPlayers = HowManyPlayers();
       CreatePlayers(numberOfHumanPlayers);
       ShowRules();
       int numberOfGamesToWin = (HowManyGames() + 1) / 2;
-      while(playerOne.score < numberOfGamesToWin / 2 && playerTwo.score < numberOfGamesToWin)
+      while(playerOne.score < numberOfGamesToWin && playerTwo.score < numberOfGamesToWin)
       {
         GetGestures();
         DisplayGestureChoices();
@@ -36,7 +35,6 @@ namespace RPSLS
       DisplayGrandWinner();
       return AskToPlayAgain();
     }
-    //set up players-- PvP or PvE
     public int HowManyPlayers()
     {
       Console.WriteLine("How many players? Please enter 0, 1, or 2.");
@@ -71,7 +69,6 @@ namespace RPSLS
         playerTwo = new AI();
       }
     }
-    //ask if user wants to see the rules
     public void ShowRules()
     {
       Console.WriteLine("Would you like to see the rules?");
@@ -81,13 +78,19 @@ namespace RPSLS
       }
     }
 
-    //ask how many games to play-- best of 3, 5, 7, etc. up to a certain maximum amount
     public int HowManyGames()
     {
-      Console.WriteLine("How many games would you like to play? (must be an odd number 3 or higher)");
-      return int.Parse(Console.ReadLine());
+      Console.WriteLine("How many games would you like to play? (best of 3 or higher, must be odd number)");
+      int gamesBestOutOf = int.Parse(Console.ReadLine().Trim());
+      if (gamesBestOutOf % 2 == 0 || gamesBestOutOf < 3)
+      {
+        return HowManyGames();
+      }
+      else
+      {
+        return gamesBestOutOf;
+      }
     }
-    //get gestures from both players
     public void GetGestures()
     {
       int randomNumber = new Random().Next(1, 6);
@@ -95,17 +98,14 @@ namespace RPSLS
       Console.ReadLine();
 
     }
-    //display gesture choices
     public void DisplayGestureChoices()
     {
       Console.WriteLine($"Player one chose {playerOne.gesture} and player two chose {playerTwo.gesture}");
     }
-    //compare gestures to determine winner
     public void CompareGestures()
     {
       //compare p1.gesture to p2.gesture and find winner
     }
-    //display results
     public void DisplayRoundWinner()
     {
       //Console.WriteLine($"{winner} is the winner!");
