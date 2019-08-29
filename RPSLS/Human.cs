@@ -13,7 +13,7 @@ namespace RPSLS
     //constructor
     public Human()
     {
-      SetName();
+
     }
 
     //member methods
