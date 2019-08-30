@@ -14,7 +14,6 @@ namespace RPSLS
     Validation inputValidation = new Validation();
     public List<string> gestures = new List<string> { "rock", "paper", "scissors", "lizard", "spock" };
 
-
     //constructor
     public Game()
     {
@@ -87,7 +86,6 @@ namespace RPSLS
           return;
       }
     }
-
     public void DisplayRules()
     {
       string gestureString = "";
@@ -119,7 +117,6 @@ namespace RPSLS
       Console.WriteLine("Press enter to proceed to play the game:");
       Console.ReadLine();
     }
-
     public int HowManyGames()
     {
       inputValidation.ReadLineFor("How many games would you like to play? (best of 3 or higher, must be odd number less than 1,000,000)", inputValidation.NumberInput);
@@ -173,14 +170,12 @@ namespace RPSLS
     {
       Console.WriteLine($"{winner} is the winner of this round vegetable.");
     }
-
     public void DisplayScore()
     {
       Console.WriteLine("Score:");
       Console.WriteLine($"{playerOne.name}: {playerOne.score}");
       Console.WriteLine($"{playerTwo.name}: {playerTwo.score}");
     }
-
     public void DetermineGrandWinner()
     {
       if (playerOne.score > playerTwo.score)
