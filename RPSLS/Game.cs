@@ -11,6 +11,7 @@ namespace RPSLS
     //member variables
     public Player playerOne;
     public Player playerTwo;
+    Validation inputValidation = new Validation();
     public List<string> gestures = new List<string> { "rock", "paper", "scissors", "lizard", "spock" };
 
 
@@ -40,8 +41,8 @@ namespace RPSLS
     }
     public int HowManyPlayers()
     {
-      Console.WriteLine("How many players? Please enter 0, 1, or 2.");
-      int numberOfHumanPlayers = int.Parse(Console.ReadLine());
+      inputValidation.ReadLineFor("How many players? Please enter 0, 1, or 2.", inputValidation.NumberInput);
+      int numberOfHumanPlayers = inputValidation.userInputAsInt;
       switch (numberOfHumanPlayers)
       {
         case 0:
@@ -50,7 +51,7 @@ namespace RPSLS
           Console.WriteLine($"Sounds great! We will get started with {numberOfHumanPlayers} player(s).");
           return numberOfHumanPlayers;
         default:
-          Console.WriteLine($"You entered {numberOfHumanPlayers}, which is not valid.");
+          Console.WriteLine($"You entered {numberOfHumanPlayers}, which is not a valid number of players.");
           return HowManyPlayers();
       }
     }
@@ -69,27 +70,21 @@ namespace RPSLS
       else
       {
         playerOne = new AI();
-        Thread.Sleep(100);
+        Thread.Sleep(50);
         playerTwo = new AI();
       }
     }
     public void AskToDisplayRules()
     {
-      Console.WriteLine("Would you like to see the rules?");
-      switch (Console.ReadLine())
+      inputValidation.ReadLineFor("Would you like to see the rules?", inputValidation.YesNo);
+      switch (inputValidation.userInput)
       {
         case "yes":
-        case "y":
           DisplayRules();
-          break;
+          return;
         case "no":
-        case "n":
           Console.WriteLine("Sounds like you already know the ropes. Have fun!");
           return;
-        default:
-          Console.WriteLine("Please enter Yes, Y, No, or N.");
-          AskToDisplayRules();
-          break;
       }
     }
 
@@ -127,8 +122,8 @@ namespace RPSLS
 
     public int HowManyGames()
     {
-      Console.WriteLine("How many games would you like to play? (best of 3 or higher, must be odd number less than 1,000)");
-      int gamesBestOutOf = int.Parse(Console.ReadLine().Trim());
+      inputValidation.ReadLineFor("How many games would you like to play? (best of 3 or higher, must be odd number less than 1,000)", inputValidation.NumberInput);
+      int gamesBestOutOf = inputValidation.userInputAsInt;
       if (gamesBestOutOf % 2 == 0 || gamesBestOutOf < 3 || gamesBestOutOf > 999)
       {
         return HowManyGames();
@@ -203,21 +198,17 @@ namespace RPSLS
     }
     public bool AskToPlayAgain()
     {
-      Console.WriteLine("Would you like to play again?");
-      string toPlayAgain = Console.ReadLine().Trim().ToLower();
+      inputValidation.ReadLineFor("Would you like to play again?", inputValidation.YesNo);
+      string toPlayAgain = inputValidation.userInput;
       switch (toPlayAgain)
       {
         case "yes":
-        case "y":
           return true;
         case "no":
-        case "n":
           return false;
         default:
-          Console.WriteLine($"You entered {toPlayAgain}. Please enter Yes, Y, No or N.");
           return AskToPlayAgain();
       }
-
     }
   }
 }
