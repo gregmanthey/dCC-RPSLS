@@ -122,9 +122,9 @@ namespace RPSLS
 
     public int HowManyGames()
     {
-      inputValidation.ReadLineFor("How many games would you like to play? (best of 3 or higher, must be odd number less than 1,000)", inputValidation.NumberInput);
+      inputValidation.ReadLineFor("How many games would you like to play? (best of 3 or higher, must be odd number less than 1,000,000)", inputValidation.NumberInput);
       int gamesBestOutOf = inputValidation.userInputAsInt;
-      if (gamesBestOutOf % 2 == 0 || gamesBestOutOf < 3 || gamesBestOutOf > 999)
+      if (gamesBestOutOf % 2 == 0 || gamesBestOutOf < 3 || gamesBestOutOf > 999_999)
       {
         return HowManyGames();
       }
