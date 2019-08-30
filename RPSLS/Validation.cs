@@ -26,31 +26,41 @@ namespace RPSLS
         Console.WriteLine(question);
         userInput = Console.ReadLine().Trim();
       }
-      while ((userInput == null || userInput == "") || !valid(userInput));
+      while (userInput == null || userInput == "" || !valid(userInput));
+    }
+
+    public bool AlphanumericInput(string input)
+    {
+      Regex nonAlphaNumericChars = new Regex("[^a-zA-Z0-9 ]");
+      if (!nonAlphaNumericChars.IsMatch(input))
+      {
+        return true;
+      }
+      Console.WriteLine("Please enter only numbers, letters and spaces.");
+      return false;
+
     }
 
     public bool LetterInput(string input)
     {
-      Regex nonAlphaNumericChars = new Regex("[^a-zA-Z0-9 ]");
-      if (nonAlphaNumericChars.IsMatch(input))
+      Regex nonAlphabetChars = new Regex("[^a-zA-Z]");
+      if (!nonAlphabetChars.IsMatch(input))
       {
-        Console.WriteLine("Invalid alphanumeric input");
-        return false;
+        return true;
       }
-      Console.WriteLine("Valid alphanumeric input");
-      return true;
+      Console.WriteLine("Please enter only letters.");
+      return false;
     }
     public bool NumberInput(string input)
     {
       Regex nonNumericChars = new Regex("[^0-9]");
-      if (nonNumericChars.IsMatch(input))
+      if (!nonNumericChars.IsMatch(input))
       {
-        Console.WriteLine("Invalid numeric input");
-        return false;
+        userInputAsInt = int.Parse(userInput);
+        return true;
       }
-      Console.WriteLine("Valid numeric input");
-      userInputAsInt = int.Parse(userInput);
-      return true;
+      Console.WriteLine("Invalid input. Please enter only a number.");
+      return false;
     }
     public bool YesNo(string input)
     {
@@ -58,11 +68,8 @@ namespace RPSLS
       {
         return true;
       }
-      else
-      {
-        Console.WriteLine("Please enter yes or no.");
-        return false;
-      }
+      Console.WriteLine("Please enter yes or no.");
+      return false;
     }
   }
 }
